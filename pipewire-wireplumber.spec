@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	apidocs		# API documentation
+
 Summary:	Session / policy manager implementation for PipeWire
 Name:		pipewire-wireplumber
 Version:	0.4.4
@@ -7,15 +11,29 @@ Group:		Libraries
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
 # Source0-md5:	bc389c723b4368b4e73e06eafce95d40
 URL:		https://pipewire.org/
+# required for both docs and introspection
+BuildRequires:	doxygen >= 1.8.0
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.62
+BuildRequires:	gobject-introspection-devel
+%{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	lua-devel >= 5.3.0
 BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja
 BuildRequires:	pipewire-devel >= 0.3.37
 BuildRequires:	pkgconfig
+BuildRequires:	python3
+BuildRequires:	python3-lxml
+BuildRequires:	python3-modules
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	systemd-devel
+%if %{with apidocs}
+BuildRequires:	python3-Sphinx
+BuildRequires:	python3-breathe
+BuildRequires:	python3-sphinx_rtd_theme
+BuildRequires:	sphinx-pdg >= 2.1.0
+%endif
 Requires:	%{name}-libs = %{version}-%{release}
 Provides:	pipewire-session-manager
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,11 +73,21 @@ Requires:	%{name}-devel = %{version}-%{release}
 %description static
 WirePlumber static library.
 
+%package apidocs
+Summary:	API documentation for PipeWire WirePlumber
+Group:		Documentation
+BuildArch:	noarch
+
+%description apidocs
+API documentation for PipeWire WirePlumber.
+
 %prep
 %setup -q -n wireplumber-%{version}
 
 %build
 %meson build \
+	-Ddoc=%{__enabled_disabled apidocs} \
+	-Dintrospection=enabled \
 	-Dsystem-lua=true
 
 %ninja_build -C build
@@ -68,6 +96,8 @@ WirePlumber static library.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
+
+%{?with_apidocs:%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/wireplumber}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -115,6 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwireplumber-0.4.so.0
 %dir %{_libdir}/wireplumber-0.4
 %dir %{_datadir}/wireplumber
+%{_libdir}/girepository-1.0/Wp-0.4.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -125,3 +156,10 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libwireplumber-0.4.a
+%{_datadir}/gir-1.0/Wp-0.4.gir
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%doc build/docs/html
+%endif
