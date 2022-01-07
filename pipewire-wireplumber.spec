@@ -5,7 +5,7 @@
 Summary:	Session / policy manager implementation for PipeWire
 Name:		pipewire-wireplumber
 Version:	0.4.6
-Release:	0.1
+Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
@@ -26,7 +26,7 @@ BuildRequires:	python3
 BuildRequires:	python3-lxml
 BuildRequires:	python3-modules
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.011
 BuildRequires:	systemd-devel
 %if %{with apidocs}
 BuildRequires:	python3-Sphinx
@@ -101,6 +101,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%systemd_user_post wireplumber.service
+
+%preun
+%systemd_user_preun wireplumber.service
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
