@@ -5,7 +5,7 @@
 Summary:	Session / policy manager implementation for PipeWire
 Name:		pipewire-wireplumber
 Version:	0.4.6
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
@@ -36,6 +36,7 @@ BuildRequires:	sphinx-pdg >= 2.1.0
 %endif
 Requires:	%{name}-libs = %{version}-%{release}
 Provides:	pipewire-session-manager
+Obsoletes:	pipewire-media-session
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
