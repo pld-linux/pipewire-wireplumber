@@ -4,12 +4,13 @@
 
 Summary:	Session / policy manager implementation for PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.7
+Version:	0.4.8
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	2b623bd5187fb01f02a2007a51000776
+# Source0-md5:	a5a405f0f8e973df9d644a20a8c0620b
+Patch0:		va_list.patch
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -20,7 +21,7 @@ BuildRequires:	gobject-introspection-devel
 BuildRequires:	lua-devel >= 5.3.0
 BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja
-BuildRequires:	pipewire-devel >= 0.3.43
+BuildRequires:	pipewire-devel >= 0.3.45
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-lxml
@@ -55,7 +56,7 @@ the actual management functionality.
 Summary:	WirePlumber shared library
 Group:		Libraries
 Requires:	glib2 >= 1:2.62
-Requires:	pipewire-libs >= 0.3.43
+Requires:	pipewire-libs >= 0.3.45
 
 %description libs
 WirePlumber shared library.
@@ -86,6 +87,7 @@ API documentation for PipeWire WirePlumber.
 
 %prep
 %setup -q -n wireplumber-%{version}
+%patch0 -p1
 
 %build
 %meson build \
@@ -132,7 +134,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-mixer-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-portal-permissionstore.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-reserve-device.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-route-settings-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-audio-adapter.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-audio-endpoint.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-node.so
