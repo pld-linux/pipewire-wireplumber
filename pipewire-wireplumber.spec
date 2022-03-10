@@ -36,9 +36,9 @@ BuildRequires:	python3-breathe
 BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	sphinx-pdg >= 2.1.0
 %endif
-Requires(post,preun):	systemd-units >= 250.1
+Requires(post,preun):	systemd-units >= 1:250.1
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	systemd-units >= 250.1
+Requires:	systemd-units >= 1:250.1
 Provides:	pipewire-session-manager
 Obsoletes:	pipewire-media-session
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
