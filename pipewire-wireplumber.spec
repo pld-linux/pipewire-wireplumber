@@ -4,14 +4,12 @@
 
 Summary:	Session / policy manager implementation for PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.8
-Release:	2
+Version:	0.4.9
+Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	a5a405f0f8e973df9d644a20a8c0620b
-Patch0:		va_list.patch
-Patch1:		876.patch
+# Source0-md5:	b77170b2740ef7bc5e943d0878452a6c
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -22,7 +20,7 @@ BuildRequires:	gobject-introspection-devel
 BuildRequires:	lua-devel >= 5.3.0
 BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja
-BuildRequires:	pipewire-devel >= 0.3.45
+BuildRequires:	pipewire-devel >= 0.3.48
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-lxml
@@ -57,7 +55,7 @@ the actual management functionality.
 Summary:	WirePlumber shared library
 Group:		Libraries
 Requires:	glib2 >= 1:2.62
-Requires:	pipewire-libs >= 0.3.45
+Requires:	pipewire-libs >= 0.3.48
 
 %description libs
 WirePlumber shared library.
@@ -88,8 +86,6 @@ API documentation for PipeWire WirePlumber.
 
 %prep
 %setup -q -n wireplumber-%{version}
-%patch0 -p1
-%patch1 -p1
 
 %build
 %meson build \
@@ -128,7 +124,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-nodes-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-nodes.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-profile.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-device-activation.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-file-monitor-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-logind.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-lua-scripting.so
