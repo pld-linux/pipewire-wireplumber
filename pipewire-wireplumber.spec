@@ -3,11 +3,13 @@
 %bcond_without	apidocs		# API documentation
 
 Summary:	Session / policy manager implementation for PipeWire
+Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
 Version:	0.4.9
 Release:	1
 License:	MIT
 Group:		Libraries
+#Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
 # Source0-md5:	b77170b2740ef7bc5e943d0878452a6c
 URL:		https://pipewire.org/
@@ -51,8 +53,15 @@ The WirePlumber daemon implements the session & policy management
 service. It follows a modular design, having plugins that implement
 the actual management functionality.
 
+%description -l pl.UTF-8
+WirePlumber to modularny zarządca sesji / polityk dla PipeWire oraz
+oparta na GObject biblioteka wysokiego poziomu obudowująca API
+PipeWire, pozwalająca na wygodne tworzenie modułów demona oraz
+zewnętrznych narzędzi do zarządzania PipeWire.
+
 %package libs
 Summary:	WirePlumber shared library
+Summary(pl.UTF-8):	Biblioteka współdzielona WirePlumber
 Group:		Libraries
 Requires:	glib2 >= 1:2.62
 Requires:	pipewire-libs >= 0.3.48
@@ -60,29 +69,44 @@ Requires:	pipewire-libs >= 0.3.48
 %description libs
 WirePlumber shared library.
 
+%description libs -l pl.UTF-8
+Biblioteka współdzielona WirePlumber.
+
 %package devel
 Summary:	Header files for WirePlumber library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki WirePlumber
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for WirePlumber library.
 
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki WirePlumber.
+
 %package static
 Summary:	WirePlumber static library
+Summary(pl.UTF-8):	Biblioteka statyczna WirePlumber
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 WirePlumber static library.
 
+%description static -l pl.UTF-8
+Biblioteka statyczna WirePlumber.
+
 %package apidocs
 Summary:	API documentation for PipeWire WirePlumber
+Summary(pl.UTF-8):	Dokumentacja API PipeWire WirePlumber
 Group:		Documentation
 BuildArch:	noarch
 
 %description apidocs
 API documentation for PipeWire WirePlumber.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API PipeWire WirePlumber.
 
 %prep
 %setup -q -n wireplumber-%{version}
@@ -168,5 +192,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%doc build/docs/html
+%doc build/docs/html/{_images,_static,c_api,configuration,lua_api,*.html,*.js}
 %endif
