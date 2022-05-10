@@ -5,13 +5,13 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.9
+Version:	0.4.10
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	b77170b2740ef7bc5e943d0878452a6c
+# Source0-md5:	a943e28259abd061d1fdacb73be0dfbb
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -20,7 +20,7 @@ BuildRequires:	glib2-devel >= 1:2.62
 BuildRequires:	gobject-introspection-devel
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	lua-devel >= 5.3.0
-BuildRequires:	meson >= 0.56.0
+BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja
 BuildRequires:	pipewire-devel >= 0.3.48
 BuildRequires:	pkgconfig
@@ -126,6 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{?with_apidocs:%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/wireplumber}
 
+%find_lang wireplumber
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -138,7 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
 
-%files
+%files -f wireplumber.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/wireplumber
 %attr(755,root,root) %{_bindir}/wpctl
