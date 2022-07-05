@@ -5,13 +5,13 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.10
+Version:	0.4.11
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	a943e28259abd061d1fdacb73be0dfbb
+# Source0-md5:	6db6998ba8c2b0c4295b1d464ca5867f
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -22,7 +22,7 @@ BuildRequires:	gobject-introspection-devel
 BuildRequires:	lua-devel >= 5.3.0
 BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja
-BuildRequires:	pipewire-devel >= 0.3.48
+BuildRequires:	pipewire-devel >= 0.3.52
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-lxml
@@ -64,7 +64,7 @@ Summary:	WirePlumber shared library
 Summary(pl.UTF-8):	Biblioteka współdzielona WirePlumber
 Group:		Libraries
 Requires:	glib2 >= 1:2.62
-Requires:	pipewire-libs >= 0.3.48
+Requires:	pipewire-libs >= 0.3.52
 
 %description libs
 WirePlumber shared library.
