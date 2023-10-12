@@ -5,13 +5,13 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.14
+Version:	0.4.15
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	5b1ae97978987f8790587f38a3d2241b
+# Source0-md5:	83967c16434d5a439be26728b8c7cd45
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -170,6 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/wireplumber/policy.lua.d
 %{_datadir}/wireplumber/scripts
 %{_datadir}/wireplumber/wireplumber.conf
+%{zsh_compdir}/_wpctl
 
 %files libs
 %defattr(644,root,root,755)
