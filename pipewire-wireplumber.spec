@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# API documentation
+%bcond_without	static_libs	# static_library
 
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
@@ -113,6 +114,7 @@ Dokumentacja API PipeWire WirePlumber.
 
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Ddoc=%{__enabled_disabled apidocs} \
 	-Dintrospection=enabled \
 	-Dsystem-lua=true
@@ -188,9 +190,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/wireplumber-0.4.pc
 %{_datadir}/gir-1.0/Wp-0.4.gir
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libwireplumber-0.4.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
