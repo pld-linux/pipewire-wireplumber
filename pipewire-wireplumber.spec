@@ -186,11 +186,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwireplumber-0.4.so
 %{_includedir}/wireplumber-0.4
 %{_pkgconfigdir}/wireplumber-0.4.pc
+%{_datadir}/gir-1.0/Wp-0.4.gir
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libwireplumber-0.4.a
-%{_datadir}/gir-1.0/Wp-0.4.gir
 
 %if %{with apidocs}
 %files apidocs
