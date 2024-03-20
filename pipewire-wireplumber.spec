@@ -6,24 +6,24 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.4.17
+Version:	0.5.0
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	1e90be7d302077e3b7e347c9cd889ff0
+# Source0-md5:	69cd00acb77d1f20ba1fb0aa2162bf52
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.62
+BuildRequires:	glib2-devel >= 1:2.68
 BuildRequires:	gobject-introspection-devel
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	lua-devel >= 5.3.0
 BuildRequires:	meson >= 0.59.0
 BuildRequires:	ninja
-BuildRequires:	pipewire-devel >= 0.3.68
+BuildRequires:	pipewire-devel >= 1.0.2
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-lxml
@@ -64,8 +64,8 @@ zewnętrznych narzędzi do zarządzania PipeWire.
 Summary:	WirePlumber shared library
 Summary(pl.UTF-8):	Biblioteka współdzielona WirePlumber
 Group:		Libraries
-Requires:	glib2 >= 1:2.62
-Requires:	pipewire-libs >= 0.3.68
+Requires:	glib2 >= 1:2.68
+Requires:	pipewire-libs >= 1.0.2
 
 %description libs
 WirePlumber shared library.
@@ -149,27 +149,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wpexec
 %{systemduserunitdir}/wireplumber.service
 %{systemduserunitdir}/wireplumber@.service
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-nodes-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-nodes.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-default-profile.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-file-monitor-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-logind.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-lua-scripting.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-metadata.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-mixer-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-portal-permissionstore.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-reserve-device.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-audio-adapter.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-audio-endpoint.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-node.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.4/libwireplumber-module-si-standard-link.so
-%{_datadir}/wireplumber/bluetooth.conf
-%{_datadir}/wireplumber/bluetooth.lua.d
-%{_datadir}/wireplumber/common
-%{_datadir}/wireplumber/main.conf
-%{_datadir}/wireplumber/main.lua.d
-%{_datadir}/wireplumber/policy.conf
-%{_datadir}/wireplumber/policy.lua.d
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-dbus-connection.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-default-nodes-api.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-file-monitor-api.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-log-settings.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-logind.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-lua-scripting.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mixer-api.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-portal-permissionstore.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-adapter.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-virtual.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-node.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-standard-link.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-standard-event-source.so
+%{_datadir}/wireplumber/wireplumber.conf.d/alsa-vm.conf
 %{_datadir}/wireplumber/scripts
 %{_datadir}/wireplumber/wireplumber.conf
 %{zsh_compdir}/_wpctl
@@ -177,23 +172,23 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %doc NEWS.rst README.rst
-%attr(755,root,root) %{_libdir}/libwireplumber-0.4.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwireplumber-0.4.so.0
-%dir %{_libdir}/wireplumber-0.4
+%attr(755,root,root) %{_libdir}/libwireplumber-0.5.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwireplumber-0.5.so.0
+%dir %{_libdir}/wireplumber-0.5
 %dir %{_datadir}/wireplumber
-%{_libdir}/girepository-1.0/Wp-0.4.typelib
+%{_libdir}/girepository-1.0/Wp-0.5.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libwireplumber-0.4.so
-%{_includedir}/wireplumber-0.4
-%{_pkgconfigdir}/wireplumber-0.4.pc
-%{_datadir}/gir-1.0/Wp-0.4.gir
+%attr(755,root,root) %{_libdir}/libwireplumber-0.5.so
+%{_includedir}/wireplumber-0.5
+%{_pkgconfigdir}/wireplumber-0.5.pc
+%{_datadir}/gir-1.0/Wp-0.5.gir
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libwireplumber-0.4.a
+%{_libdir}/libwireplumber-0.5.a
 %endif
 
 %if %{with apidocs}
