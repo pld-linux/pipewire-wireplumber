@@ -194,5 +194,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%doc build/docs/html/{_images,_static,c_api,configuration,lua_api,*.html,*.js}
+%doc build/docs/html/{_images,_static,daemon,design,library,policies,resources,scripting,*.html,*.js}
 %endif
