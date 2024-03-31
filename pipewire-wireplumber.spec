@@ -7,7 +7,7 @@ Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
 Version:	0.5.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
@@ -164,6 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-node.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-standard-link.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-standard-event-source.so
+%dir %{_datadir}/wireplumber/wireplumber.conf.d
 %{_datadir}/wireplumber/wireplumber.conf.d/alsa-vm.conf
 %{_datadir}/wireplumber/scripts
 %{_datadir}/wireplumber/wireplumber.conf
