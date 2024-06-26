@@ -6,13 +6,13 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.5.3
+Version:	0.5.4
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	d85ab206735a4045c7be44f31500c0a2
+# Source0-md5:	df5ae35f6d8bdf57e25a75c516fc8095
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -160,7 +160,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-adapter.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-virtual.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-node.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-standard-link.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-standard-event-source.so
