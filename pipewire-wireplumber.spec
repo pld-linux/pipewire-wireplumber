@@ -29,7 +29,7 @@ BuildRequires:	python3
 BuildRequires:	python3-lxml
 BuildRequires:	python3-modules
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 2.011
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	systemd-devel
 %if %{with apidocs}
 BuildRequires:	python3-Sphinx
@@ -113,18 +113,18 @@ Dokumentacja API PipeWire WirePlumber.
 %setup -q -n wireplumber-%{version}
 
 %build
-%meson build \
+%meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Ddoc=%{__enabled_disabled apidocs} \
 	-Dintrospection=enabled \
 	-Dsystem-lua=true
 
-%ninja_build -C build
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install -C build
 
 %{?with_apidocs:%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/wireplumber}
 
