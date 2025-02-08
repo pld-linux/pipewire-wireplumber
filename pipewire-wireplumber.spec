@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# API documentation
+%bcond_with	elogind		# elogind instead of systemd
 %bcond_without	static_libs	# static_library
 
 Summary:	Session / policy manager implementation for PipeWire
@@ -16,6 +17,7 @@ Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
+%{?with_elogind:BuildRequires:	elogind-devel}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.68
 BuildRequires:	gobject-introspection-devel
@@ -30,7 +32,7 @@ BuildRequires:	python3-lxml
 BuildRequires:	python3-modules
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.042
-BuildRequires:	systemd-devel
+%{!?with_elogind:BuildRequires:	systemd-devel}
 %if %{with apidocs}
 BuildRequires:	python3-Sphinx
 BuildRequires:	python3-breathe
@@ -116,8 +118,10 @@ Dokumentacja API PipeWire WirePlumber.
 %meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Ddoc=%{__enabled_disabled apidocs} \
+	-Delogind=%{__enabled_disabled elogind} \
 	-Dintrospection=enabled \
-	-Dsystem-lua=true
+	-Dsystem-lua=true \
+	-Dsystemd=%{__enabled_disabled_not elogind}
 
 %meson_build
 
