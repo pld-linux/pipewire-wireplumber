@@ -7,13 +7,13 @@
 Summary:	Session / policy manager implementation for PipeWire
 Summary(pl.UTF-8):	Implementacja zarządcy sesji / polityk dla PipeWire
 Name:		pipewire-wireplumber
-Version:	0.5.10
+Version:	0.5.11
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://gitlab.freedesktop.org/pipewire/wireplumber/-/tags
 Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version}/wireplumber-%{version}.tar.bz2
-# Source0-md5:	2cbb662f91da2bdce31fa55bef5dfcf5
+# Source0-md5:	ff42bf142bac7e2b18c4389683e8e1ae
 URL:		https://pipewire.org/
 # required for both docs and introspection
 BuildRequires:	doxygen >= 1.8.0
@@ -160,6 +160,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-logind.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-lua-scripting.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mixer-api.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-modem-manager.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mpris.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-portal-permissionstore.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
