@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# API documentation
+%bcond_without	apidocs		# API documentation and wpctl man page
 %bcond_with	elogind		# elogind instead of systemd
 %bcond_without	static_libs	# static_library
 
@@ -162,6 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mixer-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-modem-manager.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mpris.so
+%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-notifications-api.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-portal-permissionstore.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
 %attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
@@ -173,20 +174,23 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/wireplumber/wireplumber.conf.d/alsa-vm.conf
 %{_datadir}/wireplumber/scripts
 %{_datadir}/wireplumber/wireplumber.conf
+%if %{with apidocs}
+%{_mandir}/man1/wpctl.1*
+%endif
 %{zsh_compdir}/_wpctl
 
 %files libs
 %defattr(644,root,root,755)
 %doc NEWS.rst README.rst
 %attr(755,root,root) %{_libdir}/libwireplumber-0.5.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwireplumber-0.5.so.0
+%ghost %{_libdir}/libwireplumber-0.5.so.0
 %dir %{_libdir}/wireplumber-0.5
 %dir %{_datadir}/wireplumber
 %{_libdir}/girepository-1.0/Wp-0.5.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libwireplumber-0.5.so
+%{_libdir}/libwireplumber-0.5.so
 %{_includedir}/wireplumber-0.5
 %{_pkgconfigdir}/wireplumber-0.5.pc
 %{_datadir}/gir-1.0/Wp-0.5.gir
