@@ -16,7 +16,7 @@ Source0:	https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/%{version
 # Source0-md5:	87b398bafdaebf425e6ef0e4c26ffcf1
 URL:		https://pipewire.org/
 # required for both docs and introspection
-BuildRequires:	doxygen >= 1.8.0
+BuildRequires:	doxygen >= 1:1.8.0
 %{?with_elogind:BuildRequires:	elogind-devel}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.68
