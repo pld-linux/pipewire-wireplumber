@@ -153,29 +153,31 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wpexec
 %{systemduserunitdir}/wireplumber.service
 %{systemduserunitdir}/wireplumber@.service
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-dbus-connection.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-default-nodes-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-file-monitor-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-log-settings.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-logind.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-lua-scripting.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mixer-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-modem-manager.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-mpris.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-notifications-api.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-portal-permissionstore.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-adapter.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-node.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-si-standard-link.so
-%attr(755,root,root) %{_libdir}/wireplumber-0.5/libwireplumber-module-standard-event-source.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-dbus-connection.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-default-nodes-api.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-file-monitor-api.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-log-settings.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-logind.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-lua-scripting.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-mixer-api.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-modem-manager.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-mpris.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-notifications-api.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-portal-permissionstore.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-reserve-device.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-settings.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-si-audio-adapter.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-si-node.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-si-standard-link.so
+%{_libdir}/wireplumber-0.5/libwireplumber-module-standard-event-source.so
 %dir %{_datadir}/wireplumber/wireplumber.conf.d
 %{_datadir}/wireplumber/wireplumber.conf.d/alsa-vm.conf
 %{_datadir}/wireplumber/scripts
 %{_datadir}/wireplumber/wireplumber.conf
 %if %{with apidocs}
+%{_mandir}/man1/wireplumber.1*
 %{_mandir}/man1/wpctl.1*
+%{_mandir}/man1/wpexec.1*
 %endif
 %{bash_compdir}/wpctl
 %{zsh_compdir}/_wpctl
@@ -183,7 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %doc NEWS.rst README.rst
-%attr(755,root,root) %{_libdir}/libwireplumber-0.5.so.*.*.*
+%{_libdir}/libwireplumber-0.5.so.*.*.*
 %ghost %{_libdir}/libwireplumber-0.5.so.0
 %dir %{_libdir}/wireplumber-0.5
 %dir %{_datadir}/wireplumber
